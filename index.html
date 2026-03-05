@@ -236,7 +236,7 @@ select option{background:var(–dark2);}
       <p>Calculate project profitability</p>
     </div>
 
-
+```
 <!-- Project Info -->
 <div class="project-top">
   <div class="field">
@@ -364,7 +364,7 @@ select option{background:var(–dark2);}
     </div>
   </div>
 </div>
-
+```
 
   </div>
 
@@ -552,7 +552,7 @@ function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(
 
 function renderCatTabs(){
   const el = document.getElementById('catTabs');
-  el.innerHTML = CATS.map(c=><button class="cat-tab${c===activeCat?' active':''}" onclick="setActiveCat('${c}')">${c}</button>).join('');
+  el.innerHTML = CATS.map(c=>`<button class="cat-tab${c===activeCat?' active':''}" onclick="setActiveCat('${c}')">${c}</button>`).join('');
 }
 
 function setActiveCat(c){ activeCat=c; renderCatTabs(); renderLibrary(); }
@@ -646,7 +646,7 @@ function openPickModal(target){
 function closePickModal(){ document.getElementById('pickOverlay').classList.remove('open'); }
 
 function renderPickCats(){
-  document.getElementById('pickCats').innerHTML=CATS.map(c=><button class="cat-tab${c===pickCat?' active':''}" onclick="setPickCat('${c}')">${c}</button>).join('');
+  document.getElementById('pickCats').innerHTML=CATS.map(c=>`<button class="cat-tab${c===pickCat?' active':''}" onclick="setPickCat('${c}')">${c}</button>`).join('');
 }
 function setPickCat(c){ pickCat=c; renderPickCats(); renderPickList(); }
 
@@ -710,7 +710,7 @@ function addLabRow(){
 
 function getTableTotal(tbodyId){
   let total=0;
-  document.querySelectorAll(#${tbodyId} tr).forEach(row=>{
+  document.querySelectorAll(`#${tbodyId} tr`).forEach(row=>{
     const nums=row.querySelectorAll('input[type="number"]');
     if(nums.length>=2){
       const a=parseFloat(nums[0].value)||0, b=parseFloat(nums[1].value)||0, c=parseFloat(nums[2]?.value)||0;
