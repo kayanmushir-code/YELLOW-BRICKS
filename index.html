@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,376 +6,325 @@
 <title>Yellow Bricks</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dark:#8B6914;
-  --black:#0A0A0A;--dark:#111111;--dark2:#1A1A1A;--dark3:#222222;
-  --border:rgba(201,168,76,0.2);--text:#F5F0E8;--text-muted:#8A8070;
-  --profit:#4CAF7C;--loss:#E05252;--warning:#E09A52;
-}
+:root{--gold:#C9A84C;--gold-light:#E8C97A;--gold-dark:#8B6914;--black:#0A0A0A;--dark2:#1A1A1A;--dark3:#222222;--border:rgba(201,168,76,0.2);--text:#F5F0E8;--text-muted:#8A8070;--profit:#4CAF7C;--loss:#E05252;--warning:#E09A52;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(201,168,76,0.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(201,168,76,0.03) 0%,transparent 60%);pointer-events:none;z-index:0;}
 
 /* LOGIN */
-#loginScreen{position:fixed;inset:0;background:var(–black);display:flex;align-items:center;justify-content:center;z-index:1000;}
-.login-box{background:var(–dark2);border:1px solid var(–border);border-radius:20px;padding:48px 40px;width:100%;max-width:380px;text-align:center;}
+#loginScreen{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:1000;}
+.login-box{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:48px 40px;width:90%;max-width:380px;text-align:center;}
 .login-logo{font-size:40px;margin-bottom:16px;}
-.login-box h1{font-family:‘Cormorant Garamond’,serif;font-size:28px;color:var(–gold);margin-bottom:6px;}
-.login-box p{color:var(–text-muted);font-size:13px;margin-bottom:32px;}
-.login-input{width:100%;background:var(–dark3);border:1px solid var(–border);border-radius:12px;padding:16px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:15px;outline:none;text-align:center;letter-spacing:3px;margin-bottom:12px;}
-.login-input:focus{border-color:var(–gold);}
-.login-btn{width:100%;background:linear-gradient(135deg,var(–gold),var(–gold-dark));border:none;border-radius:12px;padding:16px;color:var(–black);font-family:‘DM Sans’,sans-serif;font-size:15px;font-weight:600;cursor:pointer;}
-.login-err{color:var(–loss);font-size:13px;margin-top:8px;display:none;}
+.login-box h1{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);margin-bottom:6px;}
+.login-box p{color:var(--text-muted);font-size:13px;margin-bottom:32px;}
+.login-input{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;text-align:center;margin-bottom:12px;display:block;}
+.login-input:focus{border-color:var(--gold);}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:12px;padding:16px;color:var(--black);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:block;}
+.login-err{color:var(--loss);font-size:13px;margin-top:8px;display:none;}
 
 /* NAV */
-#app{display:none;position:relative;z-index:1;}
-nav{background:var(–dark2);border-bottom:1px solid var(–border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+#app{display:none;}
+nav{background:var(--dark2);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
 .nav-logo span{font-size:22px;}
-.nav-logo h1{font-family:‘Cormorant Garamond’,serif;font-size:20px;color:var(–gold);}
+.nav-logo h1{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);}
 .nav-tabs{display:flex;gap:4px;}
-.nav-tab{background:none;border:none;color:var(–text-muted);font-family:‘DM Sans’,sans-serif;font-size:13px;padding:8px 18px;border-radius:8px;cursor:pointer;transition:all 0.2s;}
-.nav-tab.active{background:rgba(201,168,76,0.15);color:var(–gold);}
-.nav-tab:hover{color:var(–text);}
-.nav-right{display:flex;align-items:center;gap:12px;}
-.logout-btn{background:none;border:1px solid var(–border);border-radius:8px;padding:6px 14px;color:var(–text-muted);font-family:‘DM Sans’,sans-serif;font-size:12px;cursor:pointer;}
+.nav-tab{background:none;border:none;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.nav-tab.active{background:rgba(201,168,76,0.15);color:var(--gold);}
+.nav-tab:hover{color:var(--text);}
+.logout-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;white-space:nowrap;}
+.logout-btn:hover{border-color:var(--loss);color:var(--loss);}
 
 /* PAGES */
-.page{display:none;padding:32px 24px;max-width:1100px;margin:0 auto;}
+.page{display:none;padding:24px 16px;max-width:1100px;margin:0 auto;}
 .page.active{display:block;}
-.page-title{margin-bottom:32px;}
-.page-title h2{font-family:‘Cormorant Garamond’,serif;font-size:36px;font-weight:300;}
-.page-title h2 span{color:var(–gold);}
-.page-title p{color:var(–text-muted);font-size:14px;margin-top:4px;}
+.page-title{margin-bottom:28px;}
+.page-title h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;}
+.page-title h2 span{color:var(--gold);}
+.page-title p{color:var(--text-muted);font-size:14px;margin-top:4px;}
 
 /* CARDS */
-.card{background:var(–dark2);border:1px solid var(–border);border-radius:16px;overflow:hidden;margin-bottom:24px;}
-.card-header{padding:18px 24px;border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;}
-.card-header-left{display:flex;align-items:center;gap:10px;}
-.card-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
-.card-title{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:600;}
-.card-body{padding:20px 24px;}
+.card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px;}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;}
+.card-body{padding:16px 20px;}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;border:none;}
-.btn-gold{background:linear-gradient(135deg,var(–gold),var(–gold-dark));color:var(–black);}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;border:none;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black);}
 .btn-gold:hover{opacity:0.9;}
-.btn-outline{background:none;border:1px solid var(–border);color:var(–text-muted);}
-.btn-outline:hover{border-color:var(–gold);color:var(–gold);}
-.btn-danger{background:rgba(224,82,82,0.15);border:1px solid rgba(224,82,82,0.3);color:var(–loss);}
-.btn-sm{padding:6px 12px;font-size:12px;}
-.add-row-btn{width:100%;background:none;border:1px dashed var(–border);border-radius:8px;padding:10px;color:var(–text-muted);cursor:pointer;font-family:‘DM Sans’,sans-serif;font-size:13px;margin-top:10px;transition:all 0.2s;}
-.add-row-btn:hover{border-color:var(–gold);color:var(–gold);}
+.btn-outline{background:none;border:1px solid var(--border);color:var(--text-muted);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-danger{background:rgba(224,82,82,0.15);border:1px solid rgba(224,82,82,0.3);color:var(--loss);}
+.btn-sm{padding:6px 10px;font-size:12px;}
+.add-row-btn{width:100%;background:none;border:1px dashed var(--border);border-radius:8px;padding:10px;color:var(--text-muted);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;margin-top:10px;transition:all 0.2s;}
+.add-row-btn:hover{border-color:var(--gold);color:var(--gold);}
 
 /* INPUTS */
-input,select{background:var(–dark3);border:1px solid var(–border);border-radius:10px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
-input:focus,select:focus{border-color:var(–gold);}
-input::placeholder{color:var(–text-muted);}
-select option{background:var(–dark2);}
+input,select{background:var(--dark3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
+input:focus,select:focus{border-color:var(--gold);}
+input::placeholder{color:var(--text-muted);}
+select option{background:var(--dark2);}
 .field{display:flex;flex-direction:column;gap:6px;}
-.field label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(–text-muted);}
+.field label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);}
 
 /* MATERIALS LIBRARY */
-.cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
-.cat-tab{background:var(–dark3);border:1px solid var(–border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(–text-muted);cursor:pointer;transition:all 0.2s;}
-.cat-tab.active{background:rgba(201,168,76,0.15);border-color:var(–gold);color:var(–gold);}
-.materials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-.material-card{background:var(–dark3);border:1px solid var(–border);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s;}
-.material-card:hover{border-color:rgba(201,168,76,0.4);}
+.cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.cat-tab{background:var(--dark3);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+.cat-tab.active{background:rgba(201,168,76,0.15);border-color:var(--gold);color:var(--gold);}
+.materials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.material-card{background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;align-items:center;justify-content:space-between;}
 .mat-info h4{font-size:14px;font-weight:500;margin-bottom:4px;}
-.mat-info p{font-size:12px;color:var(–text-muted);}
-.mat-price{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–gold);text-align:right;}
-.mat-price span{display:block;font-size:11px;color:var(–text-muted);font-family:‘DM Sans’,sans-serif;}
-.mat-actions{display:flex;gap:6px;margin-top:8px;}
+.mat-info p{font-size:12px;color:var(--text-muted);margin-bottom:8px;}
+.mat-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);text-align:right;white-space:nowrap;}
+.mat-price span{display:block;font-size:11px;color:var(--text-muted);font-family:'DM Sans',sans-serif;}
 
-/* ADD MATERIAL MODAL */
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;display:none;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:var(–dark2);border:1px solid var(–border);border-radius:20px;padding:32px;width:100%;max-width:480px;}
-.modal h3{font-family:‘Cormorant Garamond’,serif;font-size:24px;color:var(–gold);margin-bottom:24px;}
-.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.modal{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:28px;width:90%;max-width:480px;}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-bottom:20px;}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
 .modal-grid .full{grid-column:1/-1;}
-.modal-footer{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;}
+.modal-footer{display:flex;gap:12px;justify-content:flex-end;margin-top:20px;}
 
-/* PROJECT CALCULATOR */
-.project-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;}
-.main-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start;}
-.section{background:var(–dark2);border:1px solid var(–border);border-radius:16px;overflow:hidden;margin-bottom:20px;}
-.sec-header{padding:16px 24px;border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;}
-.sec-title{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:600;}
-.sec-total{font-size:16px;font-family:‘Cormorant Garamond’,serif;color:var(–gold);}
-.sec-body{padding:20px 24px;}
+/* CALCULATOR */
+.project-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;}
+.main-grid{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;}
+.section{background:var(--dark2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px;}
+.sec-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;}
+.sec-total{font-size:15px;font-family:'Cormorant Garamond',serif;color:var(--gold);}
+.sec-body{padding:16px 20px;}
 .items-table{width:100%;border-collapse:collapse;}
-.items-table th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(–text-muted);text-align:left;padding-bottom:10px;border-bottom:1px solid var(–border);}
-.items-table td{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle;}
-.items-table td input,.items-table td select{background:var(–dark3);border:1px solid transparent;border-radius:8px;padding:8px 10px;font-size:13px;width:100%;}
-.items-table td input:focus,.items-table td select:focus{border-color:var(–gold);}
-.row-total{font-size:13px;font-weight:500;color:var(–gold-light);text-align:right;white-space:nowrap;}
-.del-btn{background:none;border:none;color:var(–text-muted);cursor:pointer;font-size:18px;padding:4px 8px;transition:color 0.2s;}
-.del-btn:hover{color:var(–loss);}
-.col-desc{width:32%;padding-right:6px;}
-.col-qty{width:12%;padding-right:6px;}
-.col-unit{width:12%;padding-right:6px;}
-.col-rate{width:16%;padding-right:6px;}
-.col-total{width:15%;text-align:right;}
+.items-table th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:left;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.items-table td{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle;}
+.items-table td input,.items-table td select{background:var(--dark3);border:1px solid transparent;border-radius:6px;padding:6px 8px;font-size:12px;width:100%;}
+.items-table td input:focus{border-color:var(--gold);}
+.row-total{font-size:12px;font-weight:500;color:var(--gold-light);text-align:right;white-space:nowrap;padding-right:4px;}
+.del-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;padding:2px 6px;}
+.del-btn:hover{color:var(--loss);}
+.col-desc{width:32%;padding-right:4px;}
+.col-qty{width:13%;padding-right:4px;}
+.col-unit{width:12%;padding-right:4px;}
+.col-rate{width:16%;padding-right:4px;}
+.col-total{width:15%;}
 .col-del{width:5%;text-align:center;}
-.pick-btn{background:rgba(201,168,76,0.1);border:1px solid var(–border);border-radius:6px;padding:4px 8px;color:var(–gold);font-size:11px;cursor:pointer;white-space:nowrap;}
-.pick-btn:hover{background:rgba(201,168,76,0.2);}
+.oh-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.oh-item{display:flex;align-items:center;justify-content:space-between;background:var(--dark3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.oh-label{font-size:12px;color:var(--text-muted);}
+.oh-input{background:none;border:none;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;outline:none;text-align:right;width:80px;}
 
-/* RESULTS PANEL */
-.results-panel{position:sticky;top:80px;}
-.profit-display{background:var(–dark2);border:1px solid var(–border);border-radius:16px;padding:24px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
-.profit-display::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(76,175,124,0.08) 0%,transparent 70%);transition:background 0.5s;}
+/* RESULTS */
+.results-panel{position:sticky;top:70px;}
+.profit-display{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden;}
+.profit-display::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(76,175,124,0.08) 0%,transparent 70%);}
 .profit-display.loss::before{background:radial-gradient(ellipse at 50% 0%,rgba(224,82,82,0.08) 0%,transparent 70%);}
 .profit-display.warn::before{background:radial-gradient(ellipse at 50% 0%,rgba(224,154,82,0.08) 0%,transparent 70%);}
-.p-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(–text-muted);margin-bottom:10px;position:relative;}
-.p-amount{font-family:‘Cormorant Garamond’,serif;font-size:46px;font-weight:700;color:var(–profit);line-height:1;margin-bottom:6px;position:relative;transition:color 0.3s;}
-.p-amount.loss{color:var(–loss);}
-.p-amount.warn{color:var(–warning);}
-.p-margin{font-size:16px;color:var(–profit);font-weight:500;position:relative;transition:color 0.3s;}
-.p-margin.loss{color:var(–loss);}
-.p-margin.warn{color:var(–warning);}
-.margin-bar-track{background:var(–dark3);border-radius:4px;height:6px;overflow:hidden;margin-top:16px;}
-.margin-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(–loss),var(–warning) 40%,var(–profit));transition:width 0.5s;}
-.margin-labels{display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(–text-muted);}
-.status-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:12px;margin-top:12px;position:relative;}
-.status-badge.good{background:rgba(76,175,124,0.15);color:var(–profit);border:1px solid rgba(76,175,124,0.3);}
-.status-badge.ok{background:rgba(224,154,82,0.15);color:var(–warning);border:1px solid rgba(224,154,82,0.3);}
-.status-badge.bad{background:rgba(224,82,82,0.15);color:var(–loss);border:1px solid rgba(224,82,82,0.3);}
-.result-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.p-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;position:relative;}
+.p-amount{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--profit);line-height:1;margin-bottom:6px;position:relative;}
+.p-amount.loss{color:var(--loss);}
+.p-amount.warn{color:var(--warning);}
+.p-margin{font-size:15px;color:var(--profit);font-weight:500;position:relative;}
+.p-margin.loss{color:var(--loss);}
+.p-margin.warn{color:var(--warning);}
+.margin-bar-track{background:var(--dark3);border-radius:4px;height:6px;overflow:hidden;margin-top:14px;}
+.margin-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--loss),var(--warning) 40%,var(--profit));transition:width 0.5s;}
+.margin-labels{display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--text-muted);}
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:11px;margin-top:10px;position:relative;}
+.status-badge.good{background:rgba(76,175,124,0.15);color:var(--profit);border:1px solid rgba(76,175,124,0.3);}
+.status-badge.ok{background:rgba(224,154,82,0.15);color:var(--warning);border:1px solid rgba(224,154,82,0.3);}
+.status-badge.bad{background:rgba(224,82,82,0.15);color:var(--loss);border:1px solid rgba(224,82,82,0.3);}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
 .result-row:last-child{border-bottom:none;}
-.r-label{font-size:13px;color:var(–text-muted);}
-.r-value{font-size:14px;font-weight:500;}
-.r-value.hi{color:var(–gold-light);}
-.r-divider{border:none;border-top:1px solid var(–border);margin:6px 0;}
+.r-label{font-size:13px;color:var(--text-muted);}
+.r-value{font-size:13px;font-weight:500;}
+.r-value.hi{color:var(--gold-light);}
+.r-divider{border:none;border-top:1px solid var(--border);margin:4px 0;}
 
-/* PICK MATERIAL MODAL */
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.project-card{background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:18px;transition:all 0.2s;}
+.project-card:hover{border-color:var(--gold);}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:19px;margin-bottom:3px;}
+.pc-type{font-size:12px;color:var(--text-muted);margin-bottom:14px;}
+.pc-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;}
+.pc-label{color:var(--text-muted);}
+.pc-profit{font-size:17px;font-family:'Cormorant Garamond',serif;font-weight:600;}
+
+/* PICK MODAL */
 .pick-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:600;display:none;align-items:center;justify-content:center;}
 .pick-overlay.open{display:flex;}
-.pick-modal{background:var(–dark2);border:1px solid var(–border);border-radius:20px;padding:28px;width:100%;max-width:600px;max-height:80vh;display:flex;flex-direction:column;}
-.pick-modal h3{font-family:‘Cormorant Garamond’,serif;font-size:22px;color:var(–gold);margin-bottom:16px;}
-.pick-search{width:100%;margin-bottom:12px;}
-.pick-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.pick-modal{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:24px;width:90%;max-width:580px;max-height:80vh;display:flex;flex-direction:column;}
+.pick-modal h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin-bottom:14px;}
+.pick-search{width:100%;margin-bottom:10px;}
+.pick-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
 .pick-list{overflow-y:auto;flex:1;}
-.pick-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:10px;cursor:pointer;transition:background 0.15s;}
-.pick-item:hover{background:var(–dark3);}
+.pick-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background 0.15s;}
+.pick-item:hover{background:var(--dark3);}
 .pick-item-name{font-size:14px;}
-.pick-item-meta{font-size:12px;color:var(–text-muted);}
-.pick-item-price{font-family:‘Cormorant Garamond’,serif;font-size:18px;color:var(–gold);}
+.pick-item-meta{font-size:12px;color:var(--text-muted);}
+.pick-item-price{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold);white-space:nowrap;}
 
-/* PROJECTS LIST */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
-.project-card{background:var(–dark2);border:1px solid var(–border);border-radius:16px;padding:20px;cursor:pointer;transition:all 0.2s;}
-.project-card:hover{border-color:var(–gold);transform:translateY(-2px);}
-.pc-name{font-family:‘Cormorant Garamond’,serif;font-size:20px;margin-bottom:4px;}
-.pc-type{font-size:12px;color:var(–text-muted);margin-bottom:16px;}
-.pc-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
-.pc-label{color:var(–text-muted);}
-.pc-profit{font-size:18px;font-family:‘Cormorant Garamond’,serif;font-weight:600;}
-.empty-state{text-align:center;padding:60px 20px;color:var(–text-muted);}
-.empty-state div{font-size:48px;margin-bottom:16px;}
-.empty-state p{font-size:15px;}
-
-@media(max-width:900px){.main-grid{grid-template-columns:1fr;}.results-panel{position:static;}.project-top{grid-template-columns:1fr 1fr;}.modal-grid{grid-template-columns:1fr;}}
-@media(max-width:600px){.project-top{grid-template-columns:1fr;}.nav-tabs{display:none;}}
+@media(max-width:900px){.main-grid{grid-template-columns:1fr;}.results-panel{position:static;}.project-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.project-top{grid-template-columns:1fr;}.modal-grid{grid-template-columns:1fr;}.oh-grid{grid-template-columns:1fr;}}
 </style>
-
 </head>
 <body>
-
-<!-- LOGIN SCREEN -->
 
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">🧱</div>
     <h1>Yellow Bricks</h1>
     <p>Enter your password to continue</p>
-    <input class="login-input" type="password" id="pwInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
-    <button class="login-btn" onclick="doLogin()">Enter</button>
+    <input class="login-input" type="text" id="pwInput" placeholder="Password" />
+    <button class="login-btn" id="loginBtn">Enter</button>
     <div class="login-err" id="loginErr">Incorrect password. Try again.</div>
   </div>
 </div>
 
-<!-- MAIN APP -->
-
 <div id="app">
   <nav>
-    <div class="nav-logo">
-      <span>🧱</span>
-      <h1>YELLOW BRICKS</h1>
-    </div>
+    <div class="nav-logo"><span>🧱</span><h1>YELLOW BRICKS</h1></div>
     <div class="nav-tabs">
-      <button class="nav-tab active" onclick="showPage('projects')">Projects</button>
-      <button class="nav-tab" onclick="showPage('calculator')">New Project</button>
-      <button class="nav-tab" onclick="showPage('library')">Materials Library</button>
+      <button class="nav-tab active" id="tab-projects" onclick="showPage('projects')">Projects</button>
+      <button class="nav-tab" id="tab-calculator" onclick="showPage('calculator')">New Project</button>
+      <button class="nav-tab" id="tab-library" onclick="showPage('library')">Materials Library</button>
     </div>
-    <div class="nav-right">
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
+    <button class="logout-btn" onclick="doLogout()">Logout</button>
   </nav>
-
-  <!-- PROJECTS PAGE -->
 
   <div class="page active" id="page-projects">
     <div class="page-title">
       <h2>Your <span>Projects</span></h2>
       <p>All saved projects and their profitability</p>
     </div>
-    <div style="margin-bottom:20px;">
-      <button class="btn btn-gold" onclick="showPage('calculator');resetCalculator()">+ New Project</button>
+    <div style="margin-bottom:16px;">
+      <button class="btn btn-gold" onclick="showPage('calculator');resetCalc()">+ New Project</button>
     </div>
     <div class="projects-grid" id="projectsList"></div>
   </div>
-
-  <!-- CALCULATOR PAGE -->
 
   <div class="page" id="page-calculator">
     <div class="page-title">
       <h2>New <span>Project</span></h2>
       <p>Calculate project profitability</p>
     </div>
-
-```
-<!-- Project Info -->
-<div class="project-top">
-  <div class="field">
-    <label>Project Name</label>
-    <input type="text" id="projName" placeholder="e.g. Villa Interior — Riffa" />
-  </div>
-  <div class="field">
-    <label>Project Type</label>
-    <select id="projType">
-      <option>Residential Interior</option>
-      <option>Commercial Fit-Out</option>
-      <option>Home Cinema</option>
-      <option>Wooden Doors</option>
-      <option>Full Turnkey</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>Contract Value (BD)</label>
-    <input type="number" id="contractValue" value="0" oninput="calculate()" />
-  </div>
-</div>
-
-<div class="main-grid">
-  <div>
-    <!-- Materials -->
-    <div class="section">
-      <div class="sec-header">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span>🪵</span><span class="sec-title">Materials</span>
-        </div>
-        <span class="sec-total" id="matTotal">BD 0</span>
+    <div class="project-top">
+      <div class="field"><label>Project Name</label><input type="text" id="projName" placeholder="e.g. Villa Interior Riffa" /></div>
+      <div class="field"><label>Project Type</label>
+        <select id="projType">
+          <option>Residential Interior</option>
+          <option>Commercial Fit-Out</option>
+          <option>Home Cinema</option>
+          <option>Wooden Doors</option>
+          <option>Full Turnkey</option>
+        </select>
       </div>
-      <div class="sec-body">
-        <table class="items-table">
-          <thead><tr>
-            <th class="col-desc">Description</th>
-            <th class="col-qty">Qty</th>
-            <th class="col-unit">Unit</th>
-            <th class="col-rate">Rate (BD)</th>
-            <th class="col-total">Total</th>
-            <th class="col-del"></th>
-          </tr></thead>
-          <tbody id="matRows"></tbody>
-        </table>
-        <div style="display:flex;gap:8px;margin-top:10px;">
-          <button class="add-row-btn" style="flex:1" onclick="addMatRow()">+ Add Material</button>
-          <button class="btn btn-outline btn-sm" onclick="openPickModal('mat')" style="white-space:nowrap">📦 Pick from Library</button>
-        </div>
-      </div>
+      <div class="field"><label>Contract Value (BD)</label><input type="number" id="contractValue" value="0" oninput="calculate()" /></div>
     </div>
-
-    <!-- Labour -->
-    <div class="section">
-      <div class="sec-header">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span>👷</span><span class="sec-title">Labour</span>
+    <div class="main-grid">
+      <div>
+        <div class="section">
+          <div class="sec-header">
+            <span class="sec-title">🪵 Materials</span>
+            <span class="sec-total" id="matTotal">BD 0</span>
+          </div>
+          <div class="sec-body">
+            <table class="items-table">
+              <thead><tr>
+                <th class="col-desc">Description</th>
+                <th class="col-qty">Qty</th>
+                <th class="col-unit">Unit</th>
+                <th class="col-rate">Rate (BD)</th>
+                <th class="col-total">Total</th>
+                <th class="col-del"></th>
+              </tr></thead>
+              <tbody id="matRows"></tbody>
+            </table>
+            <div style="display:flex;gap:8px;margin-top:10px;">
+              <button class="add-row-btn" style="flex:1" onclick="addMatRow(null)">+ Add Material</button>
+              <button class="btn btn-outline btn-sm" onclick="openPickModal()" style="white-space:nowrap">📦 From Library</button>
+            </div>
+          </div>
         </div>
-        <span class="sec-total" id="labTotal">BD 0</span>
-      </div>
-      <div class="sec-body">
-        <table class="items-table">
-          <thead><tr>
-            <th class="col-desc">Role / Trade</th>
-            <th class="col-qty">Workers</th>
-            <th class="col-unit">Days</th>
-            <th class="col-rate">Rate/Day (BD)</th>
-            <th class="col-total">Total</th>
-            <th class="col-del"></th>
-          </tr></thead>
-          <tbody id="labRows"></tbody>
-        </table>
-        <button class="add-row-btn" onclick="addLabRow()">+ Add Labour</button>
-      </div>
-    </div>
 
-    <!-- Overhead -->
-    <div class="section">
-      <div class="sec-header">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span>📋</span><span class="sec-title">Overhead & Other</span>
+        <div class="section">
+          <div class="sec-header">
+            <span class="sec-title">👷 Labour</span>
+            <span class="sec-total" id="labTotal">BD 0</span>
+          </div>
+          <div class="sec-body">
+            <table class="items-table">
+              <thead><tr>
+                <th class="col-desc">Role / Trade</th>
+                <th class="col-qty">Workers</th>
+                <th class="col-unit">Days</th>
+                <th class="col-rate">Rate/Day</th>
+                <th class="col-total">Total</th>
+                <th class="col-del"></th>
+              </tr></thead>
+              <tbody id="labRows"></tbody>
+            </table>
+            <button class="add-row-btn" onclick="addLabRow()">+ Add Labour</button>
+          </div>
         </div>
-        <span class="sec-total" id="ohTotal">BD 0</span>
-      </div>
-      <div class="sec-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          ${['transport:🚚 Transport','equipment:🛠️ Equipment','design:📐 Design & Drawings','permits:🏛️ Permits','sub:🔧 Subcontractors','contingency:⚠️ Contingency'].map(s=>{
-            const[id,label]=s.split(':');
-            return `<div style="display:flex;align-items:center;justify-content:space-between;background:var(--dark3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
-              <span style="font-size:13px;color:var(--text-muted)">${label}</span>
-              <input type="number" id="oh_${id}" value="0" oninput="calculate()" style="background:none;border:none;width:90px;text-align:right;font-size:15px;font-weight:500;" placeholder="0"/>
-            </div>`;
-          }).join('')}
+
+        <div class="section">
+          <div class="sec-header">
+            <span class="sec-title">📋 Overhead</span>
+            <span class="sec-total" id="ohTotal">BD 0</span>
+          </div>
+          <div class="sec-body">
+            <div class="oh-grid">
+              <div class="oh-item"><span class="oh-label">🚚 Transport</span><input class="oh-input" type="number" id="oh_t" value="0" oninput="calculate()" /></div>
+              <div class="oh-item"><span class="oh-label">🛠️ Equipment</span><input class="oh-input" type="number" id="oh_e" value="0" oninput="calculate()" /></div>
+              <div class="oh-item"><span class="oh-label">📐 Design</span><input class="oh-input" type="number" id="oh_d" value="0" oninput="calculate()" /></div>
+              <div class="oh-item"><span class="oh-label">🏛️ Permits</span><input class="oh-input" type="number" id="oh_p" value="0" oninput="calculate()" /></div>
+              <div class="oh-item"><span class="oh-label">🔧 Subcontractors</span><input class="oh-input" type="number" id="oh_s" value="0" oninput="calculate()" /></div>
+              <div class="oh-item"><span class="oh-label">⚠️ Contingency</span><input class="oh-input" type="number" id="oh_c" value="0" oninput="calculate()" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:4px;">
+          <button class="btn btn-gold" onclick="saveProject()">💾 Save Project</button>
+          <button class="btn btn-outline" onclick="resetCalc()">Reset</button>
         </div>
       </div>
-    </div>
 
-    <div style="display:flex;gap:12px;margin-top:8px;">
-      <button class="btn btn-gold" onclick="saveProject()">💾 Save Project</button>
-      <button class="btn btn-outline" onclick="resetCalculator()">Reset</button>
-    </div>
-  </div>
-
-  <!-- Results -->
-  <div class="results-panel">
-    <div class="profit-display" id="profitDisp">
-      <div class="p-label">Net Profit</div>
-      <div class="p-amount" id="pAmt">BD 0</div>
-      <div class="p-margin" id="pMrg">0% margin</div>
-      <div class="margin-bar-track"><div class="margin-bar-fill" id="mBar" style="width:0%"></div></div>
-      <div class="margin-labels"><span>0%</span><span>25%</span><span>50%+</span></div>
-      <div class="status-badge ok" id="sBadge">📊 Enter costs to begin</div>
-    </div>
-    <div class="card">
-      <div class="card-header"><span class="card-title">Summary</span><span style="font-size:11px;color:var(--text-muted)">Bahraini Dinar</span></div>
-      <div class="card-body">
-        <div class="result-row"><span class="r-label">Contract Value</span><span class="r-value hi" id="rContract">BD 0</span></div>
-        <hr class="r-divider">
-        <div class="result-row"><span class="r-label">🪵 Materials</span><span class="r-value" id="rMat">BD 0</span></div>
-        <div class="result-row"><span class="r-label">👷 Labour</span><span class="r-value" id="rLab">BD 0</span></div>
-        <div class="result-row"><span class="r-label">📋 Overhead</span><span class="r-value" id="rOh">BD 0</span></div>
-        <hr class="r-divider">
-        <div class="result-row"><span class="r-label" style="font-weight:600;color:var(--text)">Total Cost</span><span class="r-value" id="rCost" style="font-weight:600;font-size:15px">BD 0</span></div>
-        <div class="result-row"><span class="r-label" style="font-weight:600;color:var(--text)">Net Profit</span><span class="r-value hi" id="rProfit" style="font-weight:600;font-size:17px">BD 0</span></div>
+      <div class="results-panel">
+        <div class="profit-display" id="profitDisp">
+          <div class="p-label">Net Profit</div>
+          <div class="p-amount" id="pAmt">BD 0</div>
+          <div class="p-margin" id="pMrg">0% margin</div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" id="mBar" style="width:0%"></div></div>
+          <div class="margin-labels"><span>0%</span><span>25%</span><span>50%+</span></div>
+          <div class="status-badge ok" id="sBadge">Enter costs to begin</div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Summary</span></div>
+          <div class="card-body">
+            <div class="result-row"><span class="r-label">Contract Value</span><span class="r-value hi" id="rContract">BD 0</span></div>
+            <hr class="r-divider">
+            <div class="result-row"><span class="r-label">🪵 Materials</span><span class="r-value" id="rMat">BD 0</span></div>
+            <div class="result-row"><span class="r-label">👷 Labour</span><span class="r-value" id="rLab">BD 0</span></div>
+            <div class="result-row"><span class="r-label">📋 Overhead</span><span class="r-value" id="rOh">BD 0</span></div>
+            <hr class="r-divider">
+            <div class="result-row"><span class="r-label" style="font-weight:600;color:var(--text)">Total Cost</span><span class="r-value" id="rCost" style="font-weight:600;font-size:15px">BD 0</span></div>
+            <div class="result-row"><span class="r-label" style="font-weight:600;color:var(--text)">Net Profit</span><span class="r-value hi" id="rProfit" style="font-weight:600;font-size:17px">BD 0</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-```
-
-  </div>
-
-  <!-- MATERIALS LIBRARY PAGE -->
 
   <div class="page" id="page-library">
     <div class="page-title">
       <h2>Materials <span>Library</span></h2>
       <p>Manage your standard materials and prices</p>
     </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-      <input type="text" id="libSearch" placeholder="🔍 Search materials..." style="width:280px;" oninput="renderLibrary()" />
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+      <input type="text" id="libSearch" placeholder="Search materials..." style="width:260px;" oninput="renderLibrary()" />
       <button class="btn btn-gold" onclick="openAddModal()">+ Add Material</button>
     </div>
     <div class="cat-tabs" id="catTabs"></div>
@@ -384,41 +332,20 @@ select option{background:var(–dark2);}
   </div>
 </div>
 
-<!-- ADD/EDIT MATERIAL MODAL -->
-
 <div class="modal-overlay" id="matModal">
   <div class="modal">
     <h3 id="modalTitle">Add Material</h3>
     <div class="modal-grid">
-      <div class="field full">
-        <label>Material Name</label>
-        <input type="text" id="mName" placeholder="e.g. Marble Tiles 60x60" />
-      </div>
-      <div class="field">
-        <label>Category</label>
+      <div class="field full"><label>Material Name</label><input type="text" id="mName" placeholder="e.g. Marble Tiles 60x60" style="width:100%" /></div>
+      <div class="field"><label>Category</label>
         <select id="mCat">
-          <option>Flooring</option>
-          <option>Ceiling</option>
-          <option>Electrical</option>
-          <option>Plumbing</option>
-          <option>Paint & Finishes</option>
-          <option>Doors & Windows</option>
-          <option>Joinery & Carpentry</option>
-          <option>Sanitary Ware</option>
+          <option>Flooring</option><option>Ceiling</option><option>Electrical</option><option>Plumbing</option>
+          <option>Paint &amp; Finishes</option><option>Doors &amp; Windows</option><option>Joinery &amp; Carpentry</option><option>Sanitary Ware</option>
         </select>
       </div>
-      <div class="field">
-        <label>Unit</label>
-        <input type="text" id="mUnit" placeholder="m², piece, set..." />
-      </div>
-      <div class="field">
-        <label>Price (BD)</label>
-        <input type="number" id="mPrice" placeholder="0.00" />
-      </div>
-      <div class="field">
-        <label>Supplier (optional)</label>
-        <input type="text" id="mSupplier" placeholder="Supplier name" />
-      </div>
+      <div class="field"><label>Unit</label><input type="text" id="mUnit" placeholder="m2, piece, set..." style="width:100%" /></div>
+      <div class="field"><label>Price (BD)</label><input type="number" id="mPrice" placeholder="0.00" style="width:100%" /></div>
+      <div class="field"><label>Supplier (optional)</label><input type="text" id="mSupplier" placeholder="Supplier name" style="width:100%" /></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
@@ -427,441 +354,376 @@ select option{background:var(–dark2);}
   </div>
 </div>
 
-<!-- PICK FROM LIBRARY MODAL -->
-
 <div class="pick-overlay" id="pickOverlay">
   <div class="pick-modal">
     <h3>Pick from Library</h3>
-    <input type="text" class="pick-search" id="pickSearch" placeholder="🔍 Search..." oninput="renderPickList()" />
+    <input type="text" class="pick-search" id="pickSearch" placeholder="Search..." oninput="renderPickList()" style="width:100%" />
     <div class="pick-cats" id="pickCats"></div>
     <div class="pick-list" id="pickList"></div>
-    <div style="margin-top:16px;text-align:right;">
+    <div style="margin-top:14px;text-align:right;">
       <button class="btn btn-outline" onclick="closePickModal()">Close</button>
     </div>
   </div>
 </div>
 
 <script>
-// ─── STATE ───────────────────────────────────────────────
-const APP_PW = 'yellowbricks2024';
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxrlGg6YFisZeTU75WcNONXz_zhhxR3A8sAwH0up6f7P9TCx5JKvLa0H1o1mmmACjw6/exec';
-let materials = [];
-let projects = [];
-let editingMatId = null;
-let pickTarget = null;
-let activeCat = 'All';
-let pickCat = 'All';
-const CATS = ['All','Flooring','Ceiling','Electrical','Plumbing','Paint & Finishes','Doors & Windows','Joinery & Carpentry','Sanitary Ware'];
+var APP_PW = 'yellowbricks2024';
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxrlGg6YFisZeTU75WcNONXz_zhhxR3A8sAwH0up6f7P9TCx5JKvLa0H1o1mmmACjw6/exec';
+var materials = [];
+var projects = [];
+var editingMatId = null;
+var pickCat = 'All';
+var activeCat = 'All';
+var CATS = ['All','Flooring','Ceiling','Electrical','Plumbing','Paint & Finishes','Doors & Windows','Joinery & Carpentry','Sanitary Ware'];
 
-// ─── AUTH ─────────────────────────────────────────────────
+// LOGIN
+document.getElementById('loginBtn').onclick = doLogin;
+document.getElementById('pwInput').onkeydown = function(e){ if(e.key==='Enter') doLogin(); };
+
 function doLogin(){
   var pw = document.getElementById('pwInput').value.trim();
-  var err = document.getElementById('loginErr');
   if(pw === APP_PW){
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('app').style.display='block';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
     loadData();
   } else {
-    err.style.display='block';
-    err.textContent='Incorrect password. Try again.';
+    document.getElementById('loginErr').style.display = 'block';
   }
 }
-document.addEventListener('DOMContentLoaded', function(){
-  document.getElementById('pwInput').addEventListener('keydown', function(e){
-    if(e.key === 'Enter') doLogin();
-  });
-});
-function logout(){
-  document.getElementById('loginScreen').style.display='flex';
-  document.getElementById('app').style.display='none';
-  document.getElementById('pwInput').value='';
-  document.getElementById('loginErr').style.display='none';
+
+function doLogout(){
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('pwInput').value = '';
+  document.getElementById('loginErr').style.display = 'none';
 }
 
-// ─── STORAGE ─────────────────────────────────────────────
-async function loadData(){
-  try {
-    const res = await fetch(SHEET_URL + '?action=getMaterials');
-    const data = await res.json();
-    if(data.status === 'ok' && data.materials.length > 0){
-      materials = data.materials;
-    } else {
-      materials = getSampleMaterials();
-      await saveMatStorage();
-    }
-  } catch(e){ materials = getSampleMaterials(); await saveMatStorage(); }
-  try {
-    const res = await fetch(SHEET_URL + '?action=getProjects');
-    const data = await res.json();
-    if(data.status === 'ok') projects = data.projects;
-  } catch(e){ projects = []; }
-  renderLibrary();
-  renderProjects();
-  renderCatTabs();
-}
-async function saveMatStorage(){
-  try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveMaterials', materials })
-    });
-  } catch(e){}
-}
-async function saveProjStorage(){
-  try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveProjects', projects })
-    });
-  } catch(e){}
-}
-
-// ─── NAVIGATION ──────────────────────────────────────────
+// NAVIGATION
 function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
   document.getElementById('page-'+id).classList.add('active');
-  const tabs = document.querySelectorAll('.nav-tab');
-  const map = {projects:0,calculator:1,library:2};
-  if(map[id]!==undefined) tabs[map[id]].classList.add('active');
+  var tab = document.getElementById('tab-'+id);
+  if(tab) tab.classList.add('active');
 }
 
-// ─── MATERIALS LIBRARY ───────────────────────────────────
+// STORAGE
+function loadData(){
+  fetch(SHEET_URL + '?action=getMaterials')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d.status==='ok' && d.materials && d.materials.length > 0){
+        materials = d.materials;
+      } else {
+        materials = getSampleMaterials();
+        saveMats();
+      }
+      renderLibrary(); renderCatTabs();
+    })
+    .catch(function(){
+      materials = getSampleMaterials();
+      renderLibrary(); renderCatTabs();
+    });
+
+  fetch(SHEET_URL + '?action=getProjects')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d.status==='ok' && d.projects) projects = d.projects;
+      renderProjects();
+    })
+    .catch(function(){ projects = []; renderProjects(); });
+}
+
+function saveMats(){
+  fetch(SHEET_URL, {method:'POST', body: JSON.stringify({action:'saveMaterials', materials: materials})})
+    .catch(function(){});
+}
+
+function saveProjs(){
+  fetch(SHEET_URL, {method:'POST', body: JSON.stringify({action:'saveProjects', projects: projects})})
+    .catch(function(){});
+}
+
+// UTILS
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function fmt(n){ return 'BD ' + Math.round(Math.abs(n)).toLocaleString(); }
+
 function getSampleMaterials(){
   return [
-    {id:uid(),name:'Marble Tiles 60x60',cat:'Flooring',unit:'m²',price:18,supplier:'Al Rashid Tiles'},
-    {id:uid(),name:'Porcelain Tiles 80x80',cat:'Flooring',unit:'m²',price:12,supplier:''},
-    {id:uid(),name:'Parquet Flooring',cat:'Flooring',unit:'m²',price:22,supplier:''},
-    {id:uid(),name:'Gypsum Board',cat:'Ceiling',unit:'m²',price:8,supplier:''},
-    {id:uid(),name:'Decorative Ceiling Panel',cat:'Ceiling',unit:'m²',price:15,supplier:''},
+    {id:uid(),name:'Marble Tiles 60x60',cat:'Flooring',unit:'m2',price:18,supplier:'Al Rashid Tiles'},
+    {id:uid(),name:'Porcelain Tiles 80x80',cat:'Flooring',unit:'m2',price:12,supplier:''},
+    {id:uid(),name:'Parquet Flooring',cat:'Flooring',unit:'m2',price:22,supplier:''},
+    {id:uid(),name:'Gypsum Board',cat:'Ceiling',unit:'m2',price:8,supplier:''},
+    {id:uid(),name:'Decorative Ceiling Panel',cat:'Ceiling',unit:'m2',price:15,supplier:''},
     {id:uid(),name:'LED Downlight',cat:'Electrical',unit:'piece',price:4.5,supplier:''},
     {id:uid(),name:'Power Point Socket',cat:'Electrical',unit:'piece',price:3,supplier:''},
-    {id:uid(),name:'PVC Pipe 4"',cat:'Plumbing',unit:'m',price:2.5,supplier:''},
-    {id:uid(),name:'Interior Paint (Premium)',cat:'Paint & Finishes',unit:'litre',price:3.5,supplier:''},
-    {id:uid(),name:'Wallpaper',cat:'Paint & Finishes',unit:'m²',price:8,supplier:''},
+    {id:uid(),name:'PVC Pipe 4in',cat:'Plumbing',unit:'m',price:2.5,supplier:''},
+    {id:uid(),name:'Interior Paint Premium',cat:'Paint & Finishes',unit:'litre',price:3.5,supplier:''},
+    {id:uid(),name:'Wallpaper',cat:'Paint & Finishes',unit:'m2',price:8,supplier:''},
     {id:uid(),name:'Solid Wood Door',cat:'Doors & Windows',unit:'piece',price:280,supplier:''},
-    {id:uid(),name:'UPVC Window',cat:'Doors & Windows',unit:'m²',price:95,supplier:''},
-    {id:uid(),name:'Kitchen Cabinet (per linear m)',cat:'Joinery & Carpentry',unit:'lm',price:180,supplier:''},
-    {id:uid(),name:'Wardrobe (per linear m)',cat:'Joinery & Carpentry',unit:'lm',price:150,supplier:''},
+    {id:uid(),name:'UPVC Window',cat:'Doors & Windows',unit:'m2',price:95,supplier:''},
+    {id:uid(),name:'Kitchen Cabinet per lm',cat:'Joinery & Carpentry',unit:'lm',price:180,supplier:''},
+    {id:uid(),name:'Wardrobe per lm',cat:'Joinery & Carpentry',unit:'lm',price:150,supplier:''},
     {id:uid(),name:'Bathroom Vanity Unit',cat:'Sanitary Ware',unit:'set',price:220,supplier:''},
-    {id:uid(),name:'WC Suite',cat:'Sanitary Ware',unit:'set',price:180,supplier:''},
+    {id:uid(),name:'WC Suite',cat:'Sanitary Ware',unit:'set',price:180,supplier:''}
   ];
 }
 
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
-
+// MATERIALS LIBRARY
 function renderCatTabs(){
-  const el = document.getElementById('catTabs');
-  el.innerHTML = CATS.map(c=>`<button class="cat-tab${c===activeCat?' active':''}" onclick="setActiveCat('${c}')">${c}</button>`).join('');
+  var el = document.getElementById('catTabs');
+  el.innerHTML = '';
+  CATS.forEach(function(c){
+    var btn = document.createElement('button');
+    btn.className = 'cat-tab' + (c===activeCat ? ' active' : '');
+    btn.textContent = c;
+    btn.onclick = function(){ activeCat=c; renderCatTabs(); renderLibrary(); };
+    el.appendChild(btn);
+  });
 }
 
-function setActiveCat(c){ activeCat=c; renderCatTabs(); renderLibrary(); }
-
 function renderLibrary(){
-  const search = document.getElementById('libSearch').value.toLowerCase();
-  const grid = document.getElementById('materialsGrid');
-  const filtered = materials.filter(m=>{
-    const matchCat = activeCat==='All'||m.cat===activeCat;
-    const matchSearch = !search||m.name.toLowerCase().includes(search)||m.cat.toLowerCase().includes(search);
-    return matchCat&&matchSearch;
+  var search = (document.getElementById('libSearch').value || '').toLowerCase();
+  var grid = document.getElementById('materialsGrid');
+  var filtered = materials.filter(function(m){
+    return (activeCat==='All' || m.cat===activeCat) && (!search || m.name.toLowerCase().indexOf(search)>=0);
   });
-  if(!filtered.length){
-    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">No materials found. Add one above.</div>';
-    return;
-  }
-  grid.innerHTML = filtered.map(m=>`
-    <div class="material-card">
-      <div class="mat-info">
-        <h4>${m.name}</h4>
-        <p>${m.cat}${m.supplier?' · '+m.supplier:''}</p>
-        <div class="mat-actions">
-          <button class="btn btn-outline btn-sm" onclick="editMaterial('${m.id}')">Edit</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteMaterial('${m.id}')">Delete</button>
-        </div>
-      </div>
-      <div>
-        <div class="mat-price">BD ${parseFloat(m.price).toFixed(2)}<span>per ${m.unit}</span></div>
-      </div>
-    </div>
-  `).join('');
+  if(!filtered.length){ grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">No materials found.</div>'; return; }
+  grid.innerHTML = '';
+  filtered.forEach(function(m){
+    var card = document.createElement('div');
+    card.className = 'material-card';
+    card.innerHTML = '<div class="mat-info"><h4>'+m.name+'</h4><p>'+m.cat+(m.supplier?' · '+m.supplier:'')+'</p><div style="display:flex;gap:6px"><button class="btn btn-outline btn-sm" onclick="editMaterial(\''+m.id+'\')">Edit</button><button class="btn btn-danger btn-sm" onclick="deleteMaterial(\''+m.id+'\')">Delete</button></div></div><div class="mat-price">BD '+parseFloat(m.price).toFixed(2)+'<span>per '+m.unit+'</span></div>';
+    grid.appendChild(card);
+  });
 }
 
 function openAddModal(){
-  editingMatId=null;
-  document.getElementById('modalTitle').textContent='Add Material';
-  document.getElementById('mName').value='';
-  document.getElementById('mUnit').value='';
-  document.getElementById('mPrice').value='';
-  document.getElementById('mSupplier').value='';
+  editingMatId = null;
+  document.getElementById('modalTitle').textContent = 'Add Material';
+  document.getElementById('mName').value = '';
+  document.getElementById('mUnit').value = '';
+  document.getElementById('mPrice').value = '';
+  document.getElementById('mSupplier').value = '';
   document.getElementById('matModal').classList.add('open');
 }
 
 function editMaterial(id){
-  const m = materials.find(x=>x.id===id);
+  var m = materials.find(function(x){ return x.id===id; });
   if(!m) return;
-  editingMatId=id;
-  document.getElementById('modalTitle').textContent='Edit Material';
-  document.getElementById('mName').value=m.name;
-  document.getElementById('mCat').value=m.cat;
-  document.getElementById('mUnit').value=m.unit;
-  document.getElementById('mPrice').value=m.price;
-  document.getElementById('mSupplier').value=m.supplier||'';
+  editingMatId = id;
+  document.getElementById('modalTitle').textContent = 'Edit Material';
+  document.getElementById('mName').value = m.name;
+  document.getElementById('mCat').value = m.cat;
+  document.getElementById('mUnit').value = m.unit;
+  document.getElementById('mPrice').value = m.price;
+  document.getElementById('mSupplier').value = m.supplier || '';
   document.getElementById('matModal').classList.add('open');
 }
 
-async function saveMaterial(){
-  const name=document.getElementById('mName').value.trim();
-  const cat=document.getElementById('mCat').value;
-  const unit=document.getElementById('mUnit').value.trim();
-  const price=parseFloat(document.getElementById('mPrice').value)||0;
-  const supplier=document.getElementById('mSupplier').value.trim();
-  if(!name||!unit){alert('Please fill in name and unit.');return;}
+function saveMaterial(){
+  var name = document.getElementById('mName').value.trim();
+  var cat = document.getElementById('mCat').value;
+  var unit = document.getElementById('mUnit').value.trim();
+  var price = parseFloat(document.getElementById('mPrice').value) || 0;
+  var supplier = document.getElementById('mSupplier').value.trim();
+  if(!name || !unit){ alert('Please fill in name and unit.'); return; }
   if(editingMatId){
-    const i=materials.findIndex(x=>x.id===editingMatId);
-    if(i>-1) materials[i]={id:editingMatId,name,cat,unit,price,supplier};
+    var i = materials.findIndex(function(x){ return x.id===editingMatId; });
+    if(i>-1) materials[i] = {id:editingMatId,name:name,cat:cat,unit:unit,price:price,supplier:supplier};
   } else {
-    materials.push({id:uid(),name,cat,unit,price,supplier});
+    materials.push({id:uid(),name:name,cat:cat,unit:unit,price:price,supplier:supplier});
   }
-  await saveMatStorage();
+  saveMats();
   renderLibrary();
   closeModal();
 }
 
-async function deleteMaterial(id){
+function deleteMaterial(id){
   if(!confirm('Delete this material?')) return;
-  materials=materials.filter(x=>x.id!==id);
-  await saveMatStorage();
+  materials = materials.filter(function(x){ return x.id!==id; });
+  saveMats();
   renderLibrary();
 }
 
 function closeModal(){ document.getElementById('matModal').classList.remove('open'); }
 
-// ─── PICK FROM LIBRARY ───────────────────────────────────
-function openPickModal(target){
-  pickTarget=target; pickCat='All';
-  document.getElementById('pickSearch').value='';
+// PICK MODAL
+function openPickModal(){
+  pickCat = 'All';
+  document.getElementById('pickSearch').value = '';
   renderPickCats(); renderPickList();
   document.getElementById('pickOverlay').classList.add('open');
 }
 function closePickModal(){ document.getElementById('pickOverlay').classList.remove('open'); }
 
 function renderPickCats(){
-  document.getElementById('pickCats').innerHTML=CATS.map(c=>`<button class="cat-tab${c===pickCat?' active':''}" onclick="setPickCat('${c}')">${c}</button>`).join('');
+  var el = document.getElementById('pickCats');
+  el.innerHTML = '';
+  CATS.forEach(function(c){
+    var btn = document.createElement('button');
+    btn.className = 'cat-tab' + (c===pickCat ? ' active' : '');
+    btn.textContent = c;
+    btn.onclick = function(){ pickCat=c; renderPickCats(); renderPickList(); };
+    el.appendChild(btn);
+  });
 }
-function setPickCat(c){ pickCat=c; renderPickCats(); renderPickList(); }
 
 function renderPickList(){
-  const search=document.getElementById('pickSearch').value.toLowerCase();
-  const filtered=materials.filter(m=>{
-    const matchCat=pickCat==='All'||m.cat===pickCat;
-    const matchSearch=!search||m.name.toLowerCase().includes(search);
-    return matchCat&&matchSearch;
+  var search = (document.getElementById('pickSearch').value || '').toLowerCase();
+  var filtered = materials.filter(function(m){
+    return (pickCat==='All' || m.cat===pickCat) && (!search || m.name.toLowerCase().indexOf(search)>=0);
   });
-  const list=document.getElementById('pickList');
-  if(!filtered.length){list.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:20px">No materials found</p>';return;}
-  list.innerHTML=filtered.map(m=>`
-    <div class="pick-item" onclick="selectMaterial('${m.id}')">
-      <div>
-        <div class="pick-item-name">${m.name}</div>
-        <div class="pick-item-meta">${m.cat} · per ${m.unit}</div>
-      </div>
-      <div class="pick-item-price">BD ${parseFloat(m.price).toFixed(2)}</div>
-    </div>
-  `).join('');
+  var list = document.getElementById('pickList');
+  if(!filtered.length){ list.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:20px">No materials found</p>'; return; }
+  list.innerHTML = '';
+  filtered.forEach(function(m){
+    var item = document.createElement('div');
+    item.className = 'pick-item';
+    item.innerHTML = '<div><div class="pick-item-name">'+m.name+'</div><div class="pick-item-meta">'+m.cat+' · per '+m.unit+'</div></div><div class="pick-item-price">BD '+parseFloat(m.price).toFixed(2)+'</div>';
+    item.onclick = function(){ addMatRow(m); closePickModal(); };
+    list.appendChild(item);
+  });
 }
 
-function selectMaterial(id){
-  const m=materials.find(x=>x.id===id);
-  if(!m) return;
-  if(pickTarget==='mat') addMatRow(m);
-  closePickModal();
-}
-
-// ─── CALCULATOR ──────────────────────────────────────────
-function addMatRow(m=null){
-  const tbody=document.getElementById('matRows');
-  const tr=document.createElement('tr');
-  tr.innerHTML=`
-    <td class="col-desc"><input type="text" value="${m?m.name:''}" placeholder="Description" oninput="calculate()" /></td>
-    <td class="col-qty"><input type="number" value="1" placeholder="1" oninput="calculate()" style="width:60px"/></td>
-    <td class="col-unit"><input type="text" value="${m?m.unit:''}" placeholder="m²" oninput="calculate()" style="width:50px"/></td>
-    <td class="col-rate"><input type="number" value="${m?m.price:0}" placeholder="0" oninput="calculate()" /></td>
-    <td class="col-total"><span class="row-total">BD 0</span></td>
-    <td class="col-del"><button class="del-btn" onclick="this.closest('tr').remove();calculate()">×</button></td>
-  `;
+// CALCULATOR
+function addMatRow(m){
+  var tbody = document.getElementById('matRows');
+  var tr = document.createElement('tr');
+  tr.innerHTML = '<td class="col-desc"><input type="text" value="'+(m?m.name:'')+'" placeholder="Description" oninput="calculate()" /></td>'
+    +'<td class="col-qty"><input type="number" value="1" oninput="calculate()" style="width:55px" /></td>'
+    +'<td class="col-unit"><input type="text" value="'+(m?m.unit:'')+'" placeholder="m2" oninput="calculate()" style="width:45px" /></td>'
+    +'<td class="col-rate"><input type="number" value="'+(m?m.price:0)+'" oninput="calculate()" /></td>'
+    +'<td class="col-total"><span class="row-total">BD 0</span></td>'
+    +'<td class="col-del"><button class="del-btn" onclick="this.closest(\'tr\').remove();calculate()">x</button></td>';
   tbody.appendChild(tr);
   calculate();
 }
 
 function addLabRow(){
-  const tbody=document.getElementById('labRows');
-  const tr=document.createElement('tr');
-  tr.innerHTML=`
-    <td class="col-desc"><input type="text" placeholder="e.g. Tiling Team" oninput="calculate()" /></td>
-    <td class="col-qty"><input type="number" value="1" placeholder="1" oninput="calculate()" style="width:55px"/></td>
-    <td class="col-unit"><input type="number" value="1" placeholder="days" oninput="calculate()" style="width:55px"/></td>
-    <td class="col-rate"><input type="number" value="0" placeholder="0" oninput="calculate()" /></td>
-    <td class="col-total"><span class="row-total">BD 0</span></td>
-    <td class="col-del"><button class="del-btn" onclick="this.closest('tr').remove();calculate()">×</button></td>
-  `;
+  var tbody = document.getElementById('labRows');
+  var tr = document.createElement('tr');
+  tr.innerHTML = '<td class="col-desc"><input type="text" placeholder="e.g. Tiling Team" oninput="calculate()" /></td>'
+    +'<td class="col-qty"><input type="number" value="1" oninput="calculate()" style="width:50px" /></td>'
+    +'<td class="col-unit"><input type="number" value="1" oninput="calculate()" style="width:50px" /></td>'
+    +'<td class="col-rate"><input type="number" value="0" oninput="calculate()" /></td>'
+    +'<td class="col-total"><span class="row-total">BD 0</span></td>'
+    +'<td class="col-del"><button class="del-btn" onclick="this.closest(\'tr\').remove();calculate()">x</button></td>';
   tbody.appendChild(tr);
   calculate();
 }
 
-function getTableTotal(tbodyId){
-  let total=0;
-  document.querySelectorAll(`#${tbodyId} tr`).forEach(row=>{
-    const nums=row.querySelectorAll('input[type="number"]');
-    if(nums.length>=2){
-      const a=parseFloat(nums[0].value)||0, b=parseFloat(nums[1].value)||0, c=parseFloat(nums[2]?.value)||0;
-      // For labour: workers * days * rate; for materials: qty * rate
-      const rowTotal = nums.length>=3 ? a*b*c : a*b;
-      total+=rowTotal;
-      const span=row.querySelector('.row-total');
-      if(span) span.textContent='BD '+rowTotal.toLocaleString('en',{maximumFractionDigits:0});
-    }
-  });
-  return total;
-}
-
 function getMatTotal(){
-  let total=0;
-  document.querySelectorAll('#matRows tr').forEach(row=>{
-    const nums=row.querySelectorAll('input[type="number"]');
+  var total = 0;
+  document.querySelectorAll('#matRows tr').forEach(function(row){
+    var nums = row.querySelectorAll('input[type="number"]');
     if(nums.length>=2){
-      const qty=parseFloat(nums[0].value)||0, rate=parseFloat(nums[1].value)||0;
-      const rt=qty*rate; total+=rt;
-      const span=row.querySelector('.row-total');
-      if(span) span.textContent='BD '+rt.toLocaleString('en',{maximumFractionDigits:0});
+      var rt = (parseFloat(nums[0].value)||0) * (parseFloat(nums[1].value)||0);
+      total += rt;
+      var span = row.querySelector('.row-total');
+      if(span) span.textContent = fmt(rt);
     }
   });
   return total;
 }
 
 function getLabTotal(){
-  let total=0;
-  document.querySelectorAll('#labRows tr').forEach(row=>{
-    const nums=row.querySelectorAll('input[type="number"]');
+  var total = 0;
+  document.querySelectorAll('#labRows tr').forEach(function(row){
+    var nums = row.querySelectorAll('input[type="number"]');
     if(nums.length>=3){
-      const w=parseFloat(nums[0].value)||0, d=parseFloat(nums[1].value)||0, r=parseFloat(nums[2].value)||0;
-      const rt=w*d*r; total+=rt;
-      const span=row.querySelector('.row-total');
-      if(span) span.textContent='BD '+rt.toLocaleString('en',{maximumFractionDigits:0});
+      var rt = (parseFloat(nums[0].value)||0) * (parseFloat(nums[1].value)||0) * (parseFloat(nums[2].value)||0);
+      total += rt;
+      var span = row.querySelector('.row-total');
+      if(span) span.textContent = fmt(rt);
     }
   });
   return total;
 }
 
 function getOhTotal(){
-  let t=0;
-  ['transport','equipment','design','permits','sub','contingency'].forEach(id=>{
-    t+=parseFloat(document.getElementById('oh_'+id).value)||0;
-  });
+  var t = 0;
+  ['t','e','d','p','s','c'].forEach(function(id){ t += parseFloat(document.getElementById('oh_'+id).value)||0; });
   return t;
 }
 
-function fmt(n){ return 'BD '+(Math.round(Math.abs(n))).toLocaleString('en'); }
-
 function calculate(){
-  const contract=parseFloat(document.getElementById('contractValue').value)||0;
-  const mat=getMatTotal(), lab=getLabTotal(), oh=getOhTotal();
-  const total=mat+lab+oh;
-  const profit=contract-total;
-  const margin=contract>0?(profit/contract)*100:0;
+  var contract = parseFloat(document.getElementById('contractValue').value)||0;
+  var mat = getMatTotal(), lab = getLabTotal(), oh = getOhTotal();
+  var total = mat+lab+oh, profit = contract-total;
+  var margin = contract>0 ? (profit/contract)*100 : 0;
 
-  document.getElementById('matTotal').textContent=fmt(mat);
-  document.getElementById('labTotal').textContent=fmt(lab);
-  document.getElementById('ohTotal').textContent=fmt(oh);
-  document.getElementById('rContract').textContent=fmt(contract);
-  document.getElementById('rMat').textContent=fmt(mat);
-  document.getElementById('rLab').textContent=fmt(lab);
-  document.getElementById('rOh').textContent=fmt(oh);
-  document.getElementById('rCost').textContent=fmt(total);
+  document.getElementById('matTotal').textContent = fmt(mat);
+  document.getElementById('labTotal').textContent = fmt(lab);
+  document.getElementById('ohTotal').textContent = fmt(oh);
+  document.getElementById('rContract').textContent = fmt(contract);
+  document.getElementById('rMat').textContent = fmt(mat);
+  document.getElementById('rLab').textContent = fmt(lab);
+  document.getElementById('rOh').textContent = fmt(oh);
+  document.getElementById('rCost').textContent = fmt(total);
 
-  const rp=document.getElementById('rProfit');
-  rp.textContent=(profit<0?'- ':'')+fmt(profit);
-  rp.style.color=profit<0?'var(--loss)':profit<contract*0.1?'var(--warning)':'var(--profit)';
+  var rp = document.getElementById('rProfit');
+  rp.textContent = (profit<0?'- ':'')+fmt(profit);
+  rp.style.color = profit<0?'var(--loss)':profit<contract*0.1?'var(--warning)':'var(--profit)';
 
-  const pa=document.getElementById('pAmt'), pm=document.getElementById('pMrg');
-  const pd=document.getElementById('profitDisp'), sb=document.getElementById('sBadge');
-  pa.textContent=(profit<0?'- ':'')+fmt(profit);
-  pm.textContent=margin.toFixed(1)+'% margin';
-  document.getElementById('mBar').style.width=Math.min(Math.max(margin,0),50)/50*100+'%';
+  var pa = document.getElementById('pAmt'), pm = document.getElementById('pMrg');
+  var pd = document.getElementById('profitDisp'), sb = document.getElementById('sBadge');
+  pa.textContent = (profit<0?'- ':'')+fmt(profit);
+  pm.textContent = margin.toFixed(1)+'% margin';
+  document.getElementById('mBar').style.width = Math.min(Math.max(margin,0),50)/50*100+'%';
 
-  if(profit<0){
-    pa.className='p-amount loss'; pm.className='p-margin loss'; pd.className='profit-display loss';
-    sb.className='status-badge bad'; sb.textContent="🚨 Losing money — review costs";
-  } else if(margin<15){
-    pa.className='p-amount warn'; pm.className='p-margin warn'; pd.className='profit-display warn';
-    sb.className='status-badge ok'; sb.textContent="⚠️ Low margin — check costs";
-  } else {
-    pa.className='p-amount'; pm.className='p-margin'; pd.className='profit-display';
-    sb.className='status-badge good'; sb.textContent=margin>=25?"🏆 Excellent margin!":"✅ Healthy margin";
-  }
+  if(profit<0){ pa.className='p-amount loss'; pm.className='p-margin loss'; pd.className='profit-display loss'; sb.className='status-badge bad'; sb.textContent='Losing money - review costs'; }
+  else if(margin<15){ pa.className='p-amount warn'; pm.className='p-margin warn'; pd.className='profit-display warn'; sb.className='status-badge ok'; sb.textContent='Low margin - check costs'; }
+  else { pa.className='p-amount'; pm.className='p-margin'; pd.className='profit-display'; sb.className='status-badge good'; sb.textContent=margin>=25?'Excellent margin!':'Healthy margin'; }
 }
 
-function resetCalculator(){
-  document.getElementById('projName').value='';
-  document.getElementById('contractValue').value='0';
-  document.getElementById('matRows').innerHTML='';
-  document.getElementById('labRows').innerHTML='';
-  ['transport','equipment','design','permits','sub','contingency'].forEach(id=>{
-    document.getElementById('oh_'+id).value=0;
-  });
+function resetCalc(){
+  document.getElementById('projName').value = '';
+  document.getElementById('contractValue').value = '0';
+  document.getElementById('matRows').innerHTML = '';
+  document.getElementById('labRows').innerHTML = '';
+  ['t','e','d','p','s','c'].forEach(function(id){ document.getElementById('oh_'+id).value = 0; });
   calculate();
 }
 
-// ─── SAVE / LOAD PROJECTS ────────────────────────────────
-async function saveProject(){
-  const name=document.getElementById('projName').value.trim()||'Unnamed Project';
-  const type=document.getElementById('projType').value;
-  const contract=parseFloat(document.getElementById('contractValue').value)||0;
-  const mat=getMatTotal(), lab=getLabTotal(), oh=getOhTotal();
-  const total=mat+lab+oh, profit=contract-total;
-  const margin=contract>0?(profit/contract)*100:0;
-
-  const proj={
-    id:uid(), name, type, contract, mat, lab, oh, total, profit,
-    margin:Math.round(margin*10)/10,
-    date:new Date().toLocaleDateString('en-BH')
-  };
+function saveProject(){
+  var name = document.getElementById('projName').value.trim() || 'Unnamed Project';
+  var type = document.getElementById('projType').value;
+  var contract = parseFloat(document.getElementById('contractValue').value)||0;
+  var mat = getMatTotal(), lab = getLabTotal(), oh = getOhTotal();
+  var total = mat+lab+oh, profit = contract-total;
+  var margin = contract>0 ? Math.round((profit/contract)*1000)/10 : 0;
+  var proj = {id:uid(),name:name,type:type,contract:contract,mat:mat,lab:lab,oh:oh,total:total,profit:profit,margin:margin,date:new Date().toLocaleDateString()};
   projects.unshift(proj);
-  await saveProjStorage();
+  saveProjs();
   renderProjects();
   showPage('projects');
 }
 
 function renderProjects(){
-  const el=document.getElementById('projectsList');
-  if(!projects.length){
-    el.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div>📁</div><p>No projects yet. Create your first one!</p></div>';
-    return;
-  }
-  el.innerHTML=projects.map(p=>`
-    <div class="project-card">
-      <div class="pc-name">${p.name}</div>
-      <div class="pc-type">${p.type} · ${p.date}</div>
-      <div class="pc-row"><span class="pc-label">Contract</span><span>BD ${p.contract.toLocaleString()}</span></div>
-      <div class="pc-row"><span class="pc-label">Total Cost</span><span>BD ${p.total.toLocaleString()}</span></div>
-      <div class="pc-row"><span class="pc-label">Net Profit</span>
-        <span class="pc-profit" style="color:${p.profit<0?'var(--loss)':p.margin<15?'var(--warning)':'var(--profit)'}">
-          ${p.profit<0?'- ':''}BD ${Math.abs(Math.round(p.profit)).toLocaleString()} (${p.margin}%)
-        </span>
-      </div>
-      <div style="margin-top:12px;text-align:right;">
-        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteProject('${p.id}')">Delete</button>
-      </div>
-    </div>
-  `).join('');
+  var el = document.getElementById('projectsList');
+  if(!projects.length){ el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted)"><div style="font-size:48px;margin-bottom:16px">📁</div><p>No projects yet. Create your first one!</p></div>'; return; }
+  el.innerHTML = '';
+  projects.forEach(function(p){
+    var card = document.createElement('div');
+    card.className = 'project-card';
+    var profitColor = p.profit<0?'var(--loss)':p.margin<15?'var(--warning)':'var(--profit)';
+    card.innerHTML = '<div class="pc-name">'+p.name+'</div>'
+      +'<div class="pc-type">'+p.type+' · '+p.date+'</div>'
+      +'<div class="pc-row"><span class="pc-label">Contract</span><span>BD '+Math.round(p.contract).toLocaleString()+'</span></div>'
+      +'<div class="pc-row"><span class="pc-label">Total Cost</span><span>BD '+Math.round(p.total).toLocaleString()+'</span></div>'
+      +'<div class="pc-row"><span class="pc-label">Net Profit</span><span class="pc-profit" style="color:'+profitColor+'">'+(p.profit<0?'- ':'')+'BD '+Math.round(Math.abs(p.profit)).toLocaleString()+' ('+p.margin+'%)</span></div>'
+      +'<div style="margin-top:10px;text-align:right"><button class="btn btn-danger btn-sm" onclick="deleteProject(\''+p.id+'\')">Delete</button></div>';
+    el.appendChild(card);
+  });
 }
 
-async function deleteProject(id){
+function deleteProject(id){
   if(!confirm('Delete this project?')) return;
-  projects=projects.filter(x=>x.id!==id);
-  await saveProjStorage();
+  projects = projects.filter(function(x){ return x.id!==id; });
+  saveProjs();
   renderProjects();
 }
 </script>
-
 </body>
 </html>
